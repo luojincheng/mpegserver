@@ -22,7 +22,7 @@
 
 
 #### 安装教程
-   1.安装jdk1.8或以上版本(下载地址见下面)                                                                                                                        
+   1.安装jdk1.8或以上版本(见：下载地址4、5)                                                                                                                        
    2.下载 linux64_version/win64_version                                                                                                                   
    3. 运行 startup.bat 或 startup.sh                                                                                                     
      或直接运行                                                                                                                                  
@@ -39,7 +39,8 @@
 
        网盘下载：https://pan.baidu.com/s/1v6se4LBE8ASisEsShy10tA  提取码：1111   
        官网下载:https://www.oracle.com/cn/java/technologies/javase/javase-jdk8-downloads.html
-    
+
+   5.jdk 1.8（centos） 下载：yum install java-1.8.0-openjdk
    
 
     
