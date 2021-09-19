@@ -1,0 +1,13 @@
+ rm ./libavcodec.so
+		rm ./libavfilter.so
+		rm ./libavformat.so
+		rm ./libavutil.so
+                rm ./libfreetype.so.6
+                rm ./libiconv.so
+		rm ./libavdevice.so
+		rm ./libmp3lame.so
+		rm ./libpostproc.so
+		rm ./libswresample.so
+		rm ./libswscale.so
+		rm ./libx264.so
+		rm ./libz.so.1

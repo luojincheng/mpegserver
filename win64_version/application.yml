@@ -1,0 +1,119 @@
+server:
+  port: 8085
+  max-http-header-size: 4KB
+  tomcat:
+    max-threads: 2000
+    max-connections: 20000
+    max-http-form-post-size: 2MB
+    accesslog:
+      enabled: true
+      directory: d:/temp/springboot_single_mpeg_server/tomcat
+      rotate: true
+      pattern: '%a %h %m %l %u %t %r %s %S %b %D %T %I'
+      buffered: true
+    connection-timeout: 20000
+logging:
+#    level:
+#      com.greensoftcode: debug
+  file:
+    path: d:/temp/springboot_single_mpeg_server/logs
+    debug: true
+
+spring:
+  profiles:
+    active: h2
+
+
+---
+spring:
+  profiles: h2
+  resources:
+    static-locations: classpath:/static/
+#    static-locations: file:F:/temp/video/rtsp/html
+  #  mybatis 数据源
+  datasource:
+    url:  jdbc:h2:~/mpeg_server;DATABASE_TO_UPPER=false
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    schema: classpath:h2/schema.sql
+    data: classpath:h2/data.sql
+#    初始化sql错误继续执行
+    continue-on-error: true
+  h2:
+    console:
+      enabled: true #开启web console功能
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: true
+  cache:
+    ehcache:
+      config:  classpath:cache/ehcache.xml
+    type: ehcache
+  #  自定义配置
+  myconfig:
+#    连接视频源超时时间单位微秒ms(1000000)
+    timeout: 5000000
+#    ts保存路径
+    hlspath:
+      - tsurl
+      - d:/temp/video/rtsp #m3u8/ts文件保存位置
+
+#     每个ts的时长
+    hlstimelen: 6
+#     生成新备份记录周期86400
+    hlstscycle: 86400
+#    开启shiro授权
+    shiroauthc: true
+#     播放速度缓存key
+    playspeedkey : "playSpeed"
+#     坐标数
+    coordinatenum: 15
+#    服务器最大带宽10m
+    maxspeed: 1024000
+#    hlsSN序列号
+    hlsSN: "135b5d73d2166b07a82746b5d444c56236746ce222dba1e0f17dd26824a352396ec996fbe9b38f9890efcbaea1c370ecc46b5d70407187a3a46e585520ec7f0d43c2d8750cfd21948b1b5ad5c4986569ae1c470363998b0ed3153e70442771e79b9d9e81b574b069f6249cd3343406e322245a3fb11dd444c43cbf961aed83ee"
+
+
+
+---
+spring:
+  profiles: mysql
+  resources:
+    static-locations: classpath:/static/
+  #    static-locations: file:F:/temp/video/rtsp/html
+  #  mybatis 数据源
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mpeg_server?characterEncoding=gbk&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  cache:
+    ehcache:
+      config:  classpath:cache/ehcache.xml
+    type: ehcache
+  #  自定义配置
+  myconfig:
+    #    连接超时时间单位微秒ms(1000000)
+    timeout: 5000000
+    #    ts保存路径
+    hlspath:
+      - tsurl
+      - d:/temp/video/rtsp #m3u8/ts文件保存位置
+    #     每个ts的时长
+    hlstimelen: 6
+    #     生成新备份记录周期86400
+    hlstscycle: 86400
+    #    开启shiro授权
+    shiroauthc: true
+    #     播放速度缓存key
+    playspeedkey : "playSpeed"
+    #     坐标数
+    coordinatenum: 15
+    #    服务器最大带宽10m
+    maxspeed: 1024000
+    #    hlsSN序列号
+    hlsSN: "135b5d73d2166b07a82746b5d444c56236746ce222dba1e0f17dd26824a352396ec996fbe9b38f9890efcbaea1c370ecc46b5d70407187a3a46e585520ec7f0d43c2d8750cfd21948b1b5ad5c4986569ae1c470363998b0ed3153e70442771e79b9d9e81b574b069f6249cd3343406e322245a3fb11dd444c43cbf961aed83ee"
